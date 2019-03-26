@@ -17,7 +17,7 @@ export class TodoComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.todo = new Todo(this.id, '', false, new Date());
+		this.todo = new Todo(this.id, null, false, new Date());
 		if (this.id != -1) {
 			this.fetchTodo('prashant', this.id);
 		}
