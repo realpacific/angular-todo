@@ -1,12 +1,16 @@
+<h1>Login to TODO app</h1>
+
 <div>
   Username: <input type="text" name="username" [(ngModel)]="username" />
   Password: <input type="password" name="password" [(ngModel)]="password" />
 
 
-  <button (click)=handleLogin()>LOGIN</button>
+  <button (click)=handleLogin() class="btn btn-success btn-outline-dark">LOGIN</button>
 </div>
 
-<div>
-  <small *ngIf='invalidLogin'>{{errorMessage}}</small>
+<div *ngIf='invalidLogin' class="alert alert-warning">
+  <small>{{errorMessage}}</small>
 
 </div>
+
+<h5>Made with love using Angular</h5>
