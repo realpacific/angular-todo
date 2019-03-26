@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoDataService } from '../service/data/todo-data.service';
 
 export class Todo {
 	constructor(public id: number, public description: string, public done: boolean, public targetDate: Date) {}
@@ -10,12 +11,25 @@ export class Todo {
 	styleUrls: [ './list-todos.component.css' ]
 })
 export class ListTodosComponent implements OnInit {
-	todos = [
-		new Todo(1, 'Learn Angular', false, new Date()),
-		new Todo(2, 'Get good accuracy in NN', false, new Date())
-	];
+	todos: Todo[];
 
-	constructor() {}
+	constructor(private todosService: TodoDataService) {}
 
-	ngOnInit() {}
+	ngOnInit() {
+		this.fetchTodos('prashant');
+	}
+
+	fetchTodos(username: string) {
+		console.log(this.todosService.fetchAllTodos(username))
+		this.todosService.fetchAllTodos(username).subscribe(
+			(response) => {
+				console.log(response);
+				this.todos = response;
+				// response.forEach((todo) => {
+				// 	this.todos.push(todo);
+				// });
+			},
+			(error) => console.log(error)
+		);
+	}
 }
