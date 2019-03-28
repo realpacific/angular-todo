@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class Response {
 	constructor(public message: string) {}
@@ -12,6 +12,21 @@ export class WelcomeDataService {
 	constructor(private http: HttpClient) {}
 
 	executeHelloWorldDataService() {
-		return this.http.get<Response>('http://localhost:8080/Prashant');
+		let headers = new HttpHeaders({
+			Authorization: this.createBasicAuthenticationHttpHeader()
+		});
+
+		return this.http.get<Response>('http://localhost:8080/Prashant', {
+			headers: headers
+		});
+	}
+	
+	//Generate encoded username & password for Basic Authentication
+	createBasicAuthenticationHttpHeader() {
+		let username = 'user';
+		let password = 'password';
+		// byte64 encoding
+		let basicAutheticationHeader = 'Basic ' + window.btoa(username + ':' + password);
+		return basicAutheticationHeader;
 	}
 }
