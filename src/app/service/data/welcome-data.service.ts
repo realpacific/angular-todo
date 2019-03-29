@@ -12,21 +12,23 @@ export class WelcomeDataService {
 	constructor(private http: HttpClient) {}
 
 	executeHelloWorldDataService() {
-		let headers = new HttpHeaders({
-			Authorization: this.createBasicAuthenticationHttpHeader()
-		});
+		// let headers = new HttpHeaders({
+		// 	Authorization: this.createBasicAuthenticationHttpHeader()
+		// });
 
-		return this.http.get<Response>('http://localhost:8080/Prashant', {
-			headers: headers
-		});
+		// return this.http.get<Response>('http://localhost:8080/Prashant', {
+		// 	headers: headers
+		// });
+
+		return this.http.get<Response>('http://localhost:8080/Prashant');
 	}
-	
-	//Generate encoded username & password for Basic Authentication
-	createBasicAuthenticationHttpHeader() {
-		let username = 'user';
-		let password = 'password';
-		// byte64 encoding
-		let basicAutheticationHeader = 'Basic ' + window.btoa(username + ':' + password);
-		return basicAutheticationHeader;
-	}
+
+	// //Generate encoded username & password for Basic Authentication
+	// createBasicAuthenticationHttpHeader() {
+	// 	let username = 'user';
+	// 	let password = 'password';
+	// 	// byte64 encoding
+	// 	let basicAutheticationHeader = 'Basic ' + window.btoa(username + ':' + password);
+	// 	return basicAutheticationHeader;
+	// }
 }

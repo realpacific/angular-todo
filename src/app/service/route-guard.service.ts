@@ -12,6 +12,7 @@ export class RouteGuardService implements CanActivate {
 		if (this.hardcodedAuthenticationService.isUserLoggedIn()) {
 			return true;
 		}
+		console.log("user is not authenticated yet so routing back to /login")
 		this.router.navigate([ 'login' ]);
 		return false;
 	}
